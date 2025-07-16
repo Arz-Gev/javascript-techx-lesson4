@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" type="module"></script>
+  </head>
+  <body>
+    <div class="base-section head" id="head">Customer Details:</div>
+
+    <div class="base-section txtinp" id="txtinp">
+      <div class="txt-cont name-container" id="name-container">
+        <div class="sect-header" id="sect-header">Full Name<span>*</span></div>
+
+        <div class="txt-inp-item">
+          <input type="text" id="Fname" name="Fname" required />
+          <label for="Fname">First Name</label>
+        </div>
+
+        <div class="txt-inp-item">
+          <input type="text" id="Lname" name="Lname" required />
+          <label for="Lname">Last Name</label>
+        </div>
+
+        <div class="error" id="error">
+          <span>!</span>This field is required.
+        </div>
+      </div>
+
+      <div class="txt-cont address-container" id="address-container">
+        <div class="sect-header" id="sect-header">Address<span>*</span></div>
+
+        <div class="txt-inp-item">
+          <input type="text" id="strAddress" name="strAddress" required />
+          <label for="strAddress">Street Address</label>
+        </div>
+
+        <div class="txt-inp-item">
+          <input type="text" id="strAddressL2" name="strAddressL2" />
+          <label for="strAddressL2">Street Address Line 2</label>
+        </div>
+
+        <div class="txt-inp-item">
+          <input type="text" id="city" name="city" required />
+          <label for="city">City</label>
+        </div>
+
+        <div class="txt-inp-item">
+          <input type="text" id="province" name="province" required />
+          <label for="province">State / Province</label>
+        </div>
+
+        <div class="txt-inp-item">
+          <input type="text" id="postCode" name="postCode" required />
+          <label for="postCode">Postal / Zip Code</label>
+        </div>
+
+        <div class="error" id="error">
+          <span>!</span>This field is required.
+        </div>
+      </div>
+
+      <div class="txt-cont phone-container" id="phone-container">
+        <div class="sect-header" id="sect-header">
+          Phone Number<span>*</span>
+        </div>
+
+        <div class="txt-inp-item">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="  (000) 000-0000"
+            required
+          />
+          <label for="phone">Phone number</label>
+          <!-- there's no label for phone number in example, i thought you forget and choosed to add for consistency-->
+        </div>
+
+        <div class="error" id="error">
+          <span>!</span>This field is required.
+        </div>
+      </div>
+
+      <div class="txt-cont email-container" id="email-container">
+        <div class="sect-header" id="sect-header">E-mail</div>
+
+        <div class="txt-inp-item">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="  ex: emal@yahoo.com"
+          />
+          <label for="email">example@example.com</label>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js" type="module"></script>
+</html>

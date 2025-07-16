@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+  --main-text: rgb(44, 51, 69);
+  --secondary-text: rgb(87, 100, 126);
+  --dark-red: rgb(242, 58, 60);
+  --light-red: rgb(255, 237, 237);
+  --dark-blue: rgb(46, 105, 255);
+  --light-blue: rgb(241, 245, 255);
+  --table-color: rgb(195, 202, 216);
+  --green-color: rgb(24, 189, 91);
+  --base-grey: rgb(222, 223, 228);
+  --exist: solid black 1px;
+}
+
+* {
+  margin: 0 0;
+  padding: 0 0;
+}
+
+input {
+  padding-inline: 0;
+  padding-block: 0;
+}
+
+html {
+  background-color: rgba(236, 237, 243, 1);
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@media all and (max-width: 768px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: white;
+  max-width: 48rem;
+  width: 100%;
+  margin: 0 auto;
+}
+@media all and (max-width: 768px) {
+  body {
+    max-width: unset;
+    width: 100%;
+  }
+}
+
+.base-section {
+  margin: 0 3rem;
+}
+
+/*--------------------- HEAD*/
+
+.head {
+  font-size: clamp(0.5rem, 2vw + 0.5rem, 2rem);
+  font-weight: 600;
+  color: var(--main-text);
+  margin: 0 0;
+  padding: clamp(0.5rem, 2vw + 0.5rem, 2rem) 3rem;
+  border-bottom: solid 2px rgba(236, 237, 243, 1);
+}
+
+@media all and (max-width: 768px) {
+  .head {
+    margin: 0 0;
+  }
+}
+/*--------------------- TEXT INPUT*/
+
+.sect-header {
+  display: flex;
+  font-size: 1rem;
+  width: 100%;
+  height: auto;
+  margin: 0 0;
+}
+.sect-header span {
+  color: var(--dark-red);
+}
+
+.name-container .txt-inp-item {
+  margin: 0 0;
+  width: 50%;
+}
+
+.txt-inp-item input {
+  width: 100%;
+  height: 2rem;
+  border-radius: 4px;
+  border: 1px solid var(--base-grey);
+
+  margin: 1rem 0 0.7rem 0;
+}
+
+.txt-inp-item label {
+  font-size: 0.7rem;
+  color: var(--secondary-text);
+}
+
+.error {
+  margin: 0.5rem 0;
+  font-size: 0.7rem;
+  color: black;
+  background-color: var(--dark-red);
+}
+
+.name-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.txtinp {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+@media all and (max-width: 768px) {
+  .name-container .txt-inp-item {
+    margin: 1rem 0;
+    width: 100%;
+  }
+}
+
+.txt-cont {
+  margin: 1rem;
+}
