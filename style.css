@@ -33,7 +33,13 @@ html {
 
 @media all and (max-width: 768px) {
   html {
-    font-size: 8px;
+    font-size: 12px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  html {
+    font-size: 10px;
   }
 }
 
@@ -54,7 +60,7 @@ body {
 }
 
 .base-section {
-  margin: 0 3rem;
+  margin: 0 clamp(0.5rem, 0.5rem + 2.7vw, 3rem);
 }
 
 /*--------------------- HEAD*/
@@ -80,15 +86,25 @@ body {
   font-size: 1rem;
   width: 100%;
   height: auto;
-  margin: 0 0;
+  margin: 0 0 0.5rem 0;
 }
+
 .sect-header span {
   color: var(--dark-red);
 }
 
+.txt-inp-item {
+  margin-bottom: 1rem;
+}
+
+@media all and (max-width: 768px) {
+  .txt-inp-item {
+    margin-bottom: 0.7rem;
+  }
+}
+
 .name-container .txt-inp-item {
-  margin: 0 0;
-  width: 50%;
+  width: 48%;
 }
 
 .txt-inp-item input {
@@ -96,8 +112,13 @@ body {
   height: 2rem;
   border-radius: 4px;
   border: 1px solid var(--base-grey);
+  margin: 0 0 0.5rem 0;
+}
 
-  margin: 1rem 0 0.7rem 0;
+@media all and (max-width: 768px) {
+  .txt-inp-item input {
+    margin: 0 0 0.3rem 0;
+  }
 }
 
 .txt-inp-item label {
@@ -106,15 +127,32 @@ body {
 }
 
 .error {
-  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 0;
   font-size: 0.7rem;
-  color: black;
+  color: white;
   background-color: var(--dark-red);
+  border-radius: 10%;
+  width: auto;
+}
+
+.error span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.3rem 0 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  color: var(--dark-red);
+  background-color: white;
 }
 
 .name-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .txtinp {
@@ -125,11 +163,12 @@ body {
 
 @media all and (max-width: 768px) {
   .name-container .txt-inp-item {
-    margin: 1rem 0;
     width: 100%;
   }
 }
 
 .txt-cont {
-  margin: 1rem;
+  margin: 0.5rem 0;
+  padding: 1rem 1rem;
+  border: var(--exist);
 }
