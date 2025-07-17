@@ -31,15 +31,21 @@ html {
   font-style: normal;
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 540px) {
   html {
-    font-size: 13px;
+    font-size: 16px;
   }
 }
 
-@media all and (max-width: 540px) {
+@media all and (max-width: 500px) {
   html {
-    font-size: 10px;
+    font-size: 14px;
+  }
+}
+
+@media all and (max-width: 420px) {
+  html {
+    font-size: 12px;
   }
 }
 
