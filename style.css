@@ -33,11 +33,11 @@ html {
 
 @media all and (max-width: 768px) {
   html {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 540px) {
   html {
     font-size: 10px;
   }
@@ -61,6 +61,17 @@ body {
 
 .base-section {
   margin: 0 clamp(0.5rem, 0.5rem + 2.7vw, 3rem);
+}
+
+input:focus {
+  outline: none;
+}
+/* input::placeholder {
+  font-size: 5px;
+} */
+input {
+  font-size: 1rem;
+  color: var(--secondary-text);
 }
 
 /*--------------------- HEAD*/
@@ -95,6 +106,7 @@ body {
 
 .txt-inp-item {
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 @media all and (max-width: 768px) {
@@ -103,7 +115,7 @@ body {
   }
 }
 
-.name-container .txt-inp-item {
+.half-bar {
   width: 48%;
 }
 
@@ -130,11 +142,12 @@ body {
   display: flex;
   align-items: center;
   margin: 0 0 0 0;
+  padding: 0.1rem 0.3rem;
   font-size: 0.7rem;
   color: white;
   background-color: var(--dark-red);
-  border-radius: 10%;
-  width: auto;
+  border-radius: 0.2rem;
+  width: fit-content;
 }
 
 .error span {
@@ -149,26 +162,32 @@ body {
   background-color: white;
 }
 
-.name-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .txtinp {
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
 }
 
-@media all and (max-width: 768px) {
-  .name-container .txt-inp-item {
-    width: 100%;
-  }
-}
-
 .txt-cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 0.5rem 0;
   padding: 1rem 1rem;
-  border: var(--exist);
+  border-radius: 0.25rem;
+}
+
+.req {
+  background-color: var(--light-red);
+}
+
+.contact {
+  justify-content: start;
+  flex-direction: column;
+}
+
+@media all and (max-width: 768px) {
+  .half-bar {
+    width: 100%;
+  }
 }
