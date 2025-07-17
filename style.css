@@ -19,16 +19,20 @@
 }
 
 input {
-  padding-inline: 0;
-  padding-block: 0;
+  padding-left: 0.5rem;
+}
+
+input:required {
+  border: 1px solid red;
 }
 
 html {
   background-color: rgba(236, 237, 243, 1);
-  font-size: 16px;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
+  font-size: 16px;
   font-style: normal;
+  overflow-x: hidden;
 }
 
 @media all and (max-width: 540px) {
@@ -144,6 +148,10 @@ input {
   color: var(--secondary-text);
 }
 
+.req {
+  background-color: var(--light-red);
+}
+
 .error {
   display: flex;
   align-items: center;
@@ -183,10 +191,6 @@ input {
   border-radius: 0.25rem;
 }
 
-.req {
-  background-color: var(--light-red);
-}
-
 .contact {
   justify-content: start;
   flex-direction: column;
@@ -197,3 +201,31 @@ input {
     width: 100%;
   }
 }
+
+/* -------------------------- SUBMIT ----- */
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.7rem;
+  width: 9rem;
+  background-color: var(--green-color);
+  color: white;
+  border: unset;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+/* input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid black;
+} */
