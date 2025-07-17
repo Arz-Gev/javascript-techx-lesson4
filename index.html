@@ -100,9 +100,34 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="base-section button" id="submit">
-        Submit
-      </button>
+
+      <div class="base-section QAinp" id="txtinp">
+        <div class="qa-cont req" id="selector">
+          <div class="sect-header" id="sect-header">
+            How did you hear about us? <span>*</span>
+          </div>
+
+          <div class="txt-inp-item half-bar qa-item">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="(000) 000-0000"
+              required
+            />
+          </div>
+
+          <div class="error" id="error">
+            <span>!</span>This field is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-container">
+        <button type="submit" class="base-section button" id="submit">
+          Submit
+        </button>
+      </div>
     </form>
   </body>
   <script src="script.js" type="module"></script>
