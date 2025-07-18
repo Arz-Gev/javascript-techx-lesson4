@@ -18,8 +18,13 @@
   padding: 0 0;
 }
 
-input {
+input,
+select {
   padding-left: 0.5rem;
+}
+
+label {
+  margin-left: 0.25rem;
 }
 
 html {
@@ -66,14 +71,24 @@ body {
 }
 
 .base-section {
-  margin: 0 clamp(0.5rem, 0.5rem + 2.7vw, 3rem);
+  margin: 0rem 2.5rem 0 2.5rem;
 }
 
-input:focus {
+@media all and (max-width: 768px) {
+  .base-section {
+    margin: 0 0.75rem 0 0.75rem;
+  }
+}
+
+input,
+select,
+textarea:focus {
   outline: none;
 }
 
-input {
+input,
+select,
+textarea {
   color: var(--secondary-text);
   font-size: 1rem;
 }
@@ -108,6 +123,10 @@ input {
   width: 100%;
 }
 
+.qa-text-area .sect-header {
+  margin-bottom: 0.75rem;
+}
+
 .sect-header span {
   color: var(--dark-red);
 }
@@ -125,9 +144,12 @@ input {
 
 .half-bar {
   width: 48%;
+  margin-right: 0.4rem;
 }
 
-.txt-inp-item input {
+.txt-inp-item input,
+select,
+textarea {
   border: 1px solid var(--base-grey);
   border-radius: 4px;
   height: 2rem;
@@ -135,8 +157,19 @@ input {
   width: 98%;
 }
 
+select {
+  width: 101%;
+}
+
 @media all and (max-width: 768px) {
-  .txt-inp-item input {
+  select {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .txt-inp-item input,
+  select {
     margin: 0 0 0.3rem 0;
   }
 }
@@ -186,7 +219,7 @@ input {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0.5rem 0;
-  padding: 1rem 1rem;
+  padding: 1rem 0.75rem;
 }
 
 .contact {
@@ -197,23 +230,52 @@ input {
 @media all and (max-width: 768px) {
   .half-bar {
     width: 100%;
+    margin-right: 0;
   }
 }
 
 /* -----------------------------QA----------------- */
-.QAinp {
+.QAinp-head {
   padding-top: 3.5rem;
   border-top: solid 3px var(--base-grey);
+}
+
+.QAinp {
+  padding-top: 3.25rem;
 }
 
 .qa-cont {
   border-radius: 0.25rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
   flex-direction: column;
+  padding: 1rem 0.75rem;
+}
 
-  padding: 1rem 1rem;
+.qa-item select {
+  margin-bottom: 0.25rem;
+  background-color: white;
+  color: var(--secondary-text);
+}
+
+@media all and (max-width: 768px) {
+  .qa-item {
+    margin-bottom: 0.2rem;
+  }
+}
+
+.qa-text-area {
+  padding: 0 0.75rem;
+}
+
+.qa-text-area textarea {
+  width: calc(100% - 1.1rem);
+  min-height: 10rem;
+  max-height: 14rem;
+  padding: 0.5rem 0.5rem;
+  margin: 0;
+  resize: vertical;
 }
 
 /* -------------------------- SUBMIT ----- */

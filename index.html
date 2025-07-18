@@ -98,28 +98,56 @@
             />
             <label for="email">example@example.com</label>
           </div>
+          <div class="error" id="error">
+            <span>!</span>Enter a valid e-mail address
+          </div>
         </div>
       </div>
 
-      <div class="base-section QAinp" id="txtinp">
+      <div class="base-section QAinp-head" id="txtinp">
         <div class="qa-cont req" id="selector">
           <div class="sect-header" id="sect-header">
             How did you hear about us? <span>*</span>
           </div>
-
-          <div class="txt-inp-item half-bar qa-item">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="(000) 000-0000"
-              required
-            />
+          <div class="txt-inp-item half-bar qa-item" id="">
+            <select name="option" id="knows-from">
+              <option value="" selected hidden>Please select</option>
+              <option value="none">None</option>
+              <option value="newspaper">Newspaper</option>
+              <option value="internet">Internet</option>
+              <option value="magazine">Magazine</option>
+              <option value="other">Other</option>
+            </select>
           </div>
-
           <div class="error" id="error">
             <span>!</span>This field is required.
           </div>
+        </div>
+
+        <div class="qa-cont req" id="selector">
+          <div class="other-option qa-item">
+            <div class="sect-header" id="sect-header">Other <span>*</span></div>
+            <div class="txt-inp-item half-bar qa-item">
+              <input type="text" id="other-option" name="option" />
+            </div>
+          </div>
+          <div class="error" id="error">
+            <span>!</span>This field is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="base-section QAinp" id="txtinp">
+        <div class="qa-text-area" id="feedback">
+          <div class="sect-header" id="sect-header">Feedback about us:</div>
+          <textarea></textarea>
+        </div>
+      </div>
+
+      <div class="base-section QAinp" id="txtinp">
+        <div class="qa-text-area" id="feedback">
+          <div class="sect-header" id="sect-header">Feedback about us:</div>
+          <textarea></textarea>
         </div>
       </div>
 
