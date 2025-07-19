@@ -18,14 +18,9 @@
   --exist: solid black 1px;
 }
 
-* {
-  margin: 0 0;
-  padding: 0 0;
-}
-
 input,
 select {
-  padding-left: 0.5rem;
+  padding: 0 0.35rem;
 }
 
 label {
@@ -61,6 +56,7 @@ body {
   margin: 0 auto;
   max-width: 48rem;
   width: 100%;
+  color: var(--main-text);
 }
 
 @media all and (max-width: 768px) {
@@ -121,7 +117,8 @@ textarea {
   height: auto;
   margin: 0 0 0.5rem 0;
   width: 100%;
-  font-weight: 500;
+  font-weight: 520;
+  color: var(--main-text);
 }
 
 .sect-header span {
@@ -150,7 +147,7 @@ textarea {
   border: 1px solid var(--base-grey);
   border-radius: 4px;
   height: 2rem;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.25rem 0;
   width: 100%;
 }
 
@@ -299,12 +296,19 @@ select {
 
 .table {
   padding: 0 0.75rem;
-  font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-.base-cell {
+.row-index,
+.table th {
+  font-size: 0.75rem;
+  font-weight: 550;
+  color: var(--secondary-text);
+}
+
+.base-cell:not(.hidden-cell) {
   height: 2.75rem;
-  border: var(--exist);
+  border: 1px solid var(--table-color);
 }
 
 .row-index {
@@ -319,8 +323,13 @@ select {
 }
 
 .table-input {
-  width: 100%;
+  width: 95%;
   height: 2.75rem;
+  border: 0;
+  padding: 0;
+  font-size: 0.75rem;
+  color: var(--main-text);
+  margin: 0 2.5% 0 2.5%;
 }
 
 table {
@@ -333,8 +342,9 @@ tr {
   height: 1.5rem;
 }
 
-.hidden-cell {
-  border: 0;
+.row-index,
+.table th:not(.hidden-cell) {
+  background-color: var(--light-blue);
 }
 
 .c-left-up {
@@ -347,7 +357,6 @@ tr {
   border-bottom-left-radius: 0.3rem;
 }
 .c-right-bottom {
-  /* border-radius: 0 0 0.3rem 0; */
   border-bottom-right-radius: 0.3rem;
 }
 
@@ -377,14 +386,6 @@ tr {
   filter: brightness(1.2);
   transform: scale(1.05);
 }
-
-/* input:invalid {
-  border: 2px solid red;
-}
-
-input:valid {
-  border: 2px solid black;
-} */
 
 .sct-head-marign {
   margin-bottom: 1rem;
