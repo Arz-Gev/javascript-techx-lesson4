@@ -57,6 +57,7 @@ body {
   max-width: 48rem;
   width: 100%;
   color: var(--main-text);
+  position: relative;
 }
 
 @media all and (max-width: 768px) {
@@ -98,7 +99,7 @@ textarea {
 .head {
   border-bottom: solid 2px rgba(236, 237, 243, 1);
   color: var(--main-text);
-  font-size: 2rem;  
+  font-size: 2rem;
   font-weight: 600;
   margin: 0 0;
   padding: clamp(0.5rem, 2vw + 0.5rem, 2rem) 3rem;
@@ -362,6 +363,22 @@ tr {
   border-bottom-right-radius: 0.3rem;
 }
 
+.th-1 {
+  width: 10%;
+}
+
+.th-2 {
+  width: 33%;
+}
+/* --------- on refference, contact number takes most space, i thought this layout makes more sense ---------  */
+.th-3 {
+  width: 33%;
+}
+
+.th-4 {
+  width: 24%;
+}
+
 /* -------------------------- SUBMIT ----- */
 .submit-container {
   display: flex;
@@ -391,4 +408,58 @@ tr {
 
 .sct-head-marign {
   margin-bottom: 1rem;
+}
+/* ------------------------------------------------SUBMITED------ */
+
+.submission-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  filter: opacity(0.8);
+  position: absolute;
+  z-index: 2;
+  transform: translate(-40%, 0);
+}
+
+.submission-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white;
+  height: 16rem;
+  width: 24rem;
+  z-index: 3;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box-shadow {
+  width: 2.25rem;
+  height: 4rem;
+  border-bottom: 1rem solid var(--green-color);
+  border-right: 1rem solid var(--green-color);
+  transform: rotate(45deg);
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7.5rem;
+  height: 7.5rem;
+  border: 2px var(--green-color) solid;
+  border-radius: 50%;
+  padding-bottom: 0.75rem;
+}
+
+.thenks {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.recived {
+  font-weight: 500;
 }
