@@ -21,14 +21,31 @@ let user = {
     container: "email-container",
     addres: getId("email"),
   },
+  knowsFrom: {
+    container: "option-container",
+    source: sourceSetter(),
+  },
 };
 let section = [user.name, user.addres, user.phone, user.email];
 
+function sourceSetter() {
+  let initalOption = getId("select-option");
+  if (initalOption.value !== "") {
+    return initalOption;
+  } else if (initalOption.value === "other") {
+    return getId("other-option");
+  } else {
+    return getId("select-option");
+  }
+}
+
 getId("select-option").addEventListener("change", () => {
   if (getValue("select-option") === "other") {
-    getId("option-other").style.display = "flex";
+    getId("other-option-container").style.display = "flex";
+    requieredError("option-container", false);
+    requieredError("other-option-container", true);
   } else {
-    getId("option-other").style.display = "none";
+    getId("other-option-container").style.display = "none";
   }
 });
 
