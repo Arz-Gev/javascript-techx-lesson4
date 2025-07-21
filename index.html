@@ -7,27 +7,18 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" type="module"></script>
   </head>
-  <div class="submission-background"></div>
   <body>
-    <div class="submission-container">
-      <div class="circle">
-        <div class="box-shadow"></div>
-      </div>
-      <div class="thenks">Thank You!</div>
-      <div class="recived">Your submisson been received.</div>
-    </div>
-
     <div class="base-section head" id="head">Customer Details:</div>
-    <form novalidate>
+    <form novalidate id="form">
       <div class="base-section txtinp" id="txtinp">
-        <div class="txt-cont name-container req" id="name-container">
+        <div class="txt-cont name-container" id="name-container">
           <div class="sect-header" id="sect-header">
             Full Name<span>*</span>
           </div>
 
           <div class="txt-inp-item half-bar">
             <input type="text" id="Fname" name="Fname" required />
-            <label for="Fname">First Name</label>
+            <label for="Fname" id="abc">First Name</label>
           </div>
 
           <div class="txt-inp-item half-bar">
@@ -40,17 +31,17 @@
           </div>
         </div>
 
-        <div class="txt-cont address-container req" id="address-container">
+        <div class="txt-cont address-container" id="address-container">
           <div class="sect-header" id="sect-header">Address<span>*</span></div>
 
           <div class="txt-inp-item">
-            <input type="text" id="strAddress" name="strAddress" required />
-            <label for="strAddress">Street Address</label>
+            <input type="text" id="street-addressL1" name="street-addressL1" />
+            <label for="street-addressL1">Street Address</label>
           </div>
 
           <div class="txt-inp-item">
-            <input type="text" id="strAddressL2" name="strAddressL2" />
-            <label for="strAddressL2">Street Address Line 2</label>
+            <input type="text" id="street-addressL2" name="street-addressL2" />
+            <label for="street-addressL2">Street Address Line 2</label>
           </div>
 
           <div class="txt-inp-item half-bar">
@@ -73,7 +64,7 @@
           </div>
         </div>
 
-        <div class="txt-cont contact req" id="phone-container">
+        <div class="txt-cont contact" id="phone-container">
           <div class="sect-header" id="sect-header">
             Phone Number<span>*</span>
           </div>
@@ -84,6 +75,7 @@
               id="phone"
               name="phone"
               placeholder="(000) 000-0000"
+              autocomplete="off"
               required
             />
             <label for="phone">Phone number</label>
@@ -104,6 +96,7 @@
               id="email"
               name="email"
               placeholder="ex: emal@yahoo.com"
+              autocomplete="off"
             />
             <label for="email">example@example.com</label>
           </div>
@@ -114,12 +107,12 @@
       </div>
 
       <div class="base-section QAinp-head" id="txtinp">
-        <div class="qa-cont req" id="selector">
+        <div class="qa-cont" id="selector">
           <div class="sect-header" id="sect-header">
             How did you hear about us? <span>*</span>
           </div>
           <div class="txt-inp-item half-bar qa-item" id="">
-            <select name="option" id="knows-from">
+            <select name="option" id="select-option">
               <option value="" selected hidden>Please select</option>
               <option value="none">None</option>
               <option value="newspaper">Newspaper</option>
@@ -133,7 +126,7 @@
           </div>
         </div>
 
-        <div class="qa-cont req" id="selector">
+        <div class="qa-cont option-other" id="option-other">
           <div class="other-option qa-item">
             <div class="sect-header" id="sect-header">Other <span>*</span></div>
             <div class="txt-inp-item half-bar qa-item">
@@ -266,6 +259,13 @@
         </button>
       </div>
     </form>
+    <div class="submission-background submission-switcher"></div>
+    <div class="submission-container submission-switcher">
+      <div class="circle">
+        <div class="box-shadow"></div>
+      </div>
+      <div class="thenks">Thank You!</div>
+      <div class="recived">Your submisson been received.</div>
+    </div>
   </body>
-  <script src="script.js" type="module"></script>
 </html>
