@@ -14,9 +14,15 @@ let user = {
     postalZipCode: getId("postCode"),
   },
   phone: {
+    container: "phone-container",
     number: getId("phone"),
   },
+  email: {
+    container: "email-container",
+    addres: getId("email"),
+  },
 };
+let section = [user.name, user.addres, user.phone, user.email];
 
 getId("select-option").addEventListener("change", () => {
   if (getValue("select-option") === "other") {
@@ -28,8 +34,8 @@ getId("select-option").addEventListener("change", () => {
 
 addEventListener("submit", (event) => {
   event.preventDefault();
-  check(user.name);
-  check(user.addres);
+
+  section.forEach((element) => check(element));
 });
 
 function getValue(id) {
@@ -44,6 +50,14 @@ function getId(id) {
 
 function check(obj) {
   requieredError(obj.container, false);
+  if (obj === user.phone) {
+    phoneValidation();
+    return;
+  }
+  if (obj === user.email) {
+    emailValidation();
+    return;
+  }
   for (let key in obj) {
     if (key === "container" || key === "streetAddressLine2") {
       continue;
@@ -60,9 +74,35 @@ function requieredError(container, on) {
   let error = " .error";
   if (on) {
     getId(container).style.backgroundColor = "rgb(255, 237, 237)";
-    document.querySelector("." + container + " .error").style.display = "flex";
+    document.querySelector("#" + container + " .error").style.display = "flex";
   } else {
     getId(container).style.backgroundColor = "white";
     document.querySelector("#" + container + " .error").style.display = "none";
+  }
+}
+
+function emailValidation() {
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let userEmail = user.email.addres;
+  let container = user.email.container;
+  userEmail.style.borderColor = "rgb(222, 223, 228)";
+  if (pattern.test(userEmail.value)) {
+    requieredError(container, false);
+  } else {
+    requieredError(container, true);
+    userEmail.style.borderColor = "red";
+  }
+}
+
+function phoneValidation() {
+  const pattern = /^[\d\s]+$/;
+  let userPhone = user.phone.number;
+  let container = user.phone.container;
+  userPhone.style.borderColor = "rgb(222, 223, 228)";
+  if (pattern.test(userPhone.value)) {
+    requieredError(container, false);
+  } else {
+    requieredError(container, true);
+    userPhone.style.borderColor = "red";
   }
 }
