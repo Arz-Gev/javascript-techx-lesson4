@@ -48,17 +48,18 @@ addEventListener("submit", (event) => {
     check(element)
   );
 
-  if (checkIfError()) {
+  if (checkIfErrorScroll()) {
     showSuccess(true);
   }
 });
 
-function checkIfError() {
+function checkIfErrorScroll() {
   const div = document.querySelectorAll(".error");
 
   for (let child of div) {
     const style = window.getComputedStyle(child);
     if (style.display !== "none") {
+      child.scrollIntoView({ behavior: "smooth", block: "center" });
       return false;
     }
   }
@@ -71,12 +72,12 @@ elementById("select-option").addEventListener("change", () => {
     user.knowsFrom.selectType = 1;
     requieredError("option-container", false);
     elementById("select-option").style.borderColor = "rgb(222, 223, 228)";
-  } else if (valueById("select-option") !== "") {
+  } else {
+    elementById("other-option-container").style.display = "none";
     user.knowsFrom.source = elementById("select-option");
     user.knowsFrom.selectType = 2;
     requieredError("option-container", false);
     elementById("select-option").style.borderColor = "rgb(222, 223, 228)";
-  } else {
   }
 });
 
@@ -84,17 +85,14 @@ function selectionHnadler() {
   if (user.knowsFrom.selectType === 0) {
     requieredError("option-container", true);
     elementById("select-option").style.borderColor = "rgb(242, 58, 60)";
-    user.knowsFrom.status = false;
   } else if (user.knowsFrom.selectType === 1) {
     if (elementById("other-option").value === "") {
       requieredError("other-option-container", true);
       elementById("other-option").style.borderColor = "rgb(242, 58, 60)";
-      user.knowsFrom.status = false;
     } else {
       user.knowsFrom.source = elementById("other-option");
       requieredError("other-option-container", false);
       elementById("other-option").style.borderColor = "rgb(222, 223, 228)";
-      user.knowsFrom.status = true;
     }
   }
 }
@@ -126,15 +124,6 @@ function checkSectionInit() {
 function printSectionInit() {
   return [user.name, user.addres, user.phone, user.email, user.knowsFrom];
 }
-function reqStatusesInit() {
-  return [
-    user.nameStatus,
-    user.addresStatus,
-    user.phoneStatus,
-    user.emailstatus,
-    user.knowsFromStatus,
-  ];
-}
 function check(obj) {
   requieredError(obj.container, false);
   if (obj === user.phone) {
@@ -150,11 +139,7 @@ function check(obj) {
     return;
   }
   for (let key in obj) {
-    if (
-      key === "container" ||
-      key === "streetAddressLine2" ||
-      key === "status"
-    ) {
+    if (key === "container" || key === "streetAddressLine2") {
       continue;
     }
     obj[key].style.borderColor = "rgb(222, 223, 228)";
@@ -165,16 +150,14 @@ function check(obj) {
   }
 }
 
-function requieredError(container, condition, status) {
+function requieredError(container, condition) {
   let error = " .error";
   if (condition) {
     elementById(container).style.backgroundColor = "rgb(255, 237, 237)";
     document.querySelector("#" + container + " .error").style.display = "flex";
-    status = false;
   } else {
     elementById(container).style.backgroundColor = "white";
     document.querySelector("#" + container + " .error").style.display = "none";
-    status = true;
   }
 }
 
@@ -185,15 +168,13 @@ function emailValidation() {
   let container = user.email.container;
   userEmail.style.borderColor = "rgb(222, 223, 228)";
   if (pattern.test(userEmail.value)) {
-    requieredError(container, false, user.emailstatus);
+    requieredError(container, false);
     return;
   } else if (userEmail.value !== "") {
-    user.email.status = false;
-    requieredError(container, true, user.emailstatus);
+    requieredError(container, true);
     userEmail.style.borderColor = "red";
     return;
   }
-  user.emailstatus = true;
 }
 
 function phoneValidation() {
@@ -202,10 +183,9 @@ function phoneValidation() {
   let container = user.phone.container;
   userPhone.style.borderColor = "rgb(222, 223, 228)";
   if (pattern.test(userPhone.value)) {
-    requieredError(container, false), user.phoneStatus;
-    user.phoneStatus = true;
+    requieredError(container, false);
   } else {
-    requieredError(container, true, user.phoneStatus);
+    requieredError(container, true);
     userPhone.style.borderColor = "red";
   }
 }
