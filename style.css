@@ -421,7 +421,6 @@ tr {
 }
 
 .submission-container {
-  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
@@ -463,10 +462,11 @@ tr {
   font-weight: 500;
 }
 /* _________________________________________________________ */
-.submission-switcher {
+
+.option-other {
   display: none;
 }
 
-.option-other {
+#submission-switcher {
   display: none;
 }

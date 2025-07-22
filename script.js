@@ -1,99 +1,125 @@
 let user = {
   name: {
-    status: false,
     container: "name-container",
-    firstName: getId("Fname"),
-    lastName: getId("Lname"),
+    firstName: elementById("Fname"),
+    lastName: elementById("Lname"),
   },
   addres: {
-    status: false,
     container: "address-container",
-    streetAddressLine1: getId("street-addressL1"),
-    streetAddressLine2: getId("street-addressL2"),
-    addresCity: getId("city"),
-    addresStateProvince: getId("province"),
-    postalZipCode: getId("postCode"),
+    streetAddressLine1: elementById("street-addressL1"),
+    streetAddressLine2: elementById("street-addressL2"),
+    addresCity: elementById("city"),
+    addresStateProvince: elementById("province"),
+    postalZipCode: elementById("postCode"),
   },
   phone: {
-    status: false,
     container: "phone-container",
-    number: getId("phone"),
+    number: elementById("phone"),
   },
   email: {
-    status: false,
     container: "email-container",
-    addres: getId("email"),
+    addres: elementById("email"),
   },
   knowsFrom: {
-    status: false,
     container: "option-container",
     selectType: 0,
     source: "",
   },
   feedback: {
-    text: getId("feedback"),
+    text: elementById("feedback"),
   },
   suggestion: {
-    text: getId("suggestions"),
+    text: elementById("suggestions"),
   },
   willRecomend: {
-    answer: getId("recomend"),
+    answer: elementById("recomend"),
   },
   referencePeople: {
-    personOne: [getValue("1-1"), getValue("1-2"), getValue("1-3")],
-    personTwo: [getValue("2-1"), getValue("2-2"), getValue("2-3")],
+    personOne: [valueById("1-1"), valueById("1-2"), valueById("1-3")],
+    personTwo: [valueById("2-1"), valueById("2-2"), valueById("2-3")],
   },
-  errors: 5,
+  status: false,
+  sectionsToCheck: [],
+  sectionsToPrint: [],
 };
-let section = [user.name, user.addres, user.phone, user.email, user.knowsFrom];
+
+addEventListener("submit", (event) => {
+  event.preventDefault();
+  (user.sectionsToCheck = checkSectionInit()).forEach((element) =>
+    check(element)
+  );
+
+  if (user.status) {
+    (user.sectionsToPrint = printSectionInit()).forEach((element) =>
+      print(element)
+    );
+    showSuccess(true);
+    document.addEventListener("KeyboardEvent", () => {
+      showSuccess(false);
+      event.stopPropagation();
+    });
+  }
+});
+
+elementById("select-option").addEventListener("change", () => {
+  if (valueById("select-option") === "other") {
+    elementById("other-option-container").style.display = "flex";
+    user.knowsFrom.selectType = 1;
+    requieredError("option-container", false);
+    elementById("select-option").style.borderColor = "rgb(222, 223, 228)";
+  } else if (valueById("select-option") !== "") {
+    user.knowsFrom.source = elementById("select-option");
+    user.knowsFrom.selectType = 2;
+    requieredError("option-container", false);
+    elementById("select-option").style.borderColor = "rgb(222, 223, 228)";
+  }
+});
 
 function selectionHnadler() {
   if (user.knowsFrom.selectType === 0) {
     requieredError("option-container", true);
-    getId("select-option").style.borderColor = "rgb(242, 58, 60)";
+    elementById("select-option").style.borderColor = "rgb(242, 58, 60)";
     user.knowsFrom.status = false;
   } else if (user.knowsFrom.selectType === 1) {
-    if (getId("other-option").value === "") {
+    if (elementById("other-option").value === "") {
       requieredError("other-option-container", true);
-      getId("other-option").style.borderColor = "rgb(242, 58, 60)";
+      elementById("other-option").style.borderColor = "rgb(242, 58, 60)";
       user.knowsFrom.status = false;
     } else {
-      user.knowsFrom.source = getId("other-option");
+      user.knowsFrom.source = elementById("other-option");
       requieredError("other-option-container", false);
-      getId("other-option").style.borderColor = "rgb(222, 223, 228)";
+      elementById("other-option").style.borderColor = "rgb(222, 223, 228)";
       user.knowsFrom.status = true;
     }
   }
 }
 
-getId("select-option").addEventListener("change", () => {
-  if (getValue("select-option") === "other") {
-    getId("other-option-container").style.display = "flex";
-    user.knowsFrom.selectType = 1;
-    requieredError("option-container", false);
-    getId("select-option").style.borderColor = "rgb(222, 223, 228)";
-  } else if (getValue("select-option") !== "") {
-    user.knowsFrom.source = getId("select-option");
-    user.knowsFrom.selectType = 2;
-    requieredError("option-container", false);
-    getId("select-option").style.borderColor = "rgb(222, 223, 228)";
-  }
-});
+function showSuccess(condition) {
+  let switcher = document.querySelectorAll("#submission-switcher");
+  condition
+    ? switcher.forEach((e) => {
+        e.style.display = "flex";
+      })
+    : switcher.forEach((e) => {
+        e.style.display = "none";
+      });
+}
 
-addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  section.forEach((element) => check(element));
-});
-
-function getValue(id) {
+function valueById(id) {
   let element = document.getElementById(id);
   return element.value;
 }
 
-function getId(id) {
+function elementById(id) {
   let element = document.getElementById(id);
   return element;
+}
+
+function checkSectionInit() {
+  return [user.name, user.addres, user.phone, user.email, user.knowsFrom];
+}
+function printSectionInit() {
+  return [user.name, user.addres, user.phone, user.email, user.knowsFrom];
 }
 
 function check(obj) {
@@ -126,14 +152,16 @@ function check(obj) {
   }
 }
 
-function requieredError(container, on) {
+function requieredError(container, condition) {
   let error = " .error";
-  if (on) {
-    getId(container).style.backgroundColor = "rgb(255, 237, 237)";
+  if (condition) {
+    elementById(container).style.backgroundColor = "rgb(255, 237, 237)";
     document.querySelector("#" + container + " .error").style.display = "flex";
+    user.status = false;
   } else {
-    getId(container).style.backgroundColor = "white";
+    elementById(container).style.backgroundColor = "white";
     document.querySelector("#" + container + " .error").style.display = "none";
+    user.status = true;
   }
 }
 
