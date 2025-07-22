@@ -158,7 +158,7 @@ function check(obj) {
     emailValidation();
     return;
   }
-  if (obj == user.knowsFrom) {
+  if (obj === user.knowsFrom) {
     selectionHnadler();
     return;
   }
