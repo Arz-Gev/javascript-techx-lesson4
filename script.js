@@ -38,7 +38,6 @@ let user = {
     personOne: [valueById("1-1"), valueById("1-2"), valueById("1-3")],
     personTwo: [valueById("2-1"), valueById("2-2"), valueById("2-3")],
   },
-  status: false,
   sectionsToCheck: [],
   sectionsToPrint: [],
 };
@@ -49,17 +48,22 @@ addEventListener("submit", (event) => {
     check(element)
   );
 
-  if (user.status) {
-    (user.sectionsToPrint = printSectionInit()).forEach((element) =>
-      print(element)
-    );
+  if (checkIfError()) {
     showSuccess(true);
-    document.addEventListener("KeyboardEvent", () => {
-      showSuccess(false);
-      event.stopPropagation();
-    });
   }
 });
+
+function checkIfError() {
+  const div = document.querySelectorAll(".error");
+
+  for (let child of div) {
+    const style = window.getComputedStyle(child);
+    if (style.display !== "none") {
+      return false;
+    }
+  }
+  return true;
+}
 
 elementById("select-option").addEventListener("change", () => {
   if (valueById("select-option") === "other") {
@@ -72,6 +76,7 @@ elementById("select-option").addEventListener("change", () => {
     user.knowsFrom.selectType = 2;
     requieredError("option-container", false);
     elementById("select-option").style.borderColor = "rgb(222, 223, 228)";
+  } else {
   }
 });
 
@@ -121,7 +126,15 @@ function checkSectionInit() {
 function printSectionInit() {
   return [user.name, user.addres, user.phone, user.email, user.knowsFrom];
 }
-
+function reqStatusesInit() {
+  return [
+    user.nameStatus,
+    user.addresStatus,
+    user.phoneStatus,
+    user.emailstatus,
+    user.knowsFromStatus,
+  ];
+}
 function check(obj) {
   requieredError(obj.container, false);
   if (obj === user.phone) {
@@ -152,16 +165,16 @@ function check(obj) {
   }
 }
 
-function requieredError(container, condition) {
+function requieredError(container, condition, status) {
   let error = " .error";
   if (condition) {
     elementById(container).style.backgroundColor = "rgb(255, 237, 237)";
     document.querySelector("#" + container + " .error").style.display = "flex";
-    user.status = false;
+    status = false;
   } else {
     elementById(container).style.backgroundColor = "white";
     document.querySelector("#" + container + " .error").style.display = "none";
-    user.status = true;
+    status = true;
   }
 }
 
@@ -172,30 +185,27 @@ function emailValidation() {
   let container = user.email.container;
   userEmail.style.borderColor = "rgb(222, 223, 228)";
   if (pattern.test(userEmail.value)) {
-    requieredError(container, false);
-    user.email.status = true;
+    requieredError(container, false, user.emailstatus);
     return;
   } else if (userEmail.value !== "") {
     user.email.status = false;
-    requieredError(container, true);
+    requieredError(container, true, user.emailstatus);
     userEmail.style.borderColor = "red";
     return;
   }
-  user.email.status = true;
+  user.emailstatus = true;
 }
 
 function phoneValidation() {
-  //added counter
   const pattern = /^[\d\s]+$/;
   let userPhone = user.phone.number;
   let container = user.phone.container;
   userPhone.style.borderColor = "rgb(222, 223, 228)";
   if (pattern.test(userPhone.value)) {
-    requieredError(container, false);
-    user.phone.status = true;
+    requieredError(container, false), user.phoneStatus;
+    user.phoneStatus = true;
   } else {
-    user.phone.status = false;
-    requieredError(container, true);
+    requieredError(container, true, user.phoneStatus);
     userPhone.style.borderColor = "red";
   }
 }
