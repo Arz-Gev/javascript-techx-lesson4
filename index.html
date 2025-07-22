@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" type="module"></script>
+    <script src="script.js" type="module" defer></script>
   </head>
   <body>
     <div class="base-section head" id="head">Customer Details:</div>
@@ -129,7 +129,12 @@
           <div class="other-option qa-item">
             <div class="sect-header" id="sect-header">Other <span>*</span></div>
             <div class="txt-inp-item half-bar qa-item">
-              <input type="text" id="other-option" name="option" />
+              <input
+                type="text"
+                id="other-option"
+                name="option"
+                placeholder="Please specify the other"
+              />
             </div>
           </div>
           <div class="error" id="error">
@@ -253,9 +258,7 @@
       </div>
 
       <div class="submit-container">
-        <button type="submit" class="base-section button" id="submit">
-          Submit
-        </button>
+        <button type="submit" class="base-section button">Submit</button>
       </div>
     </form>
     <div class="submission-background" id="submission-switcher"></div>

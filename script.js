@@ -1,5 +1,4 @@
 let form = elementById("form");
-let data = new FormData(form);
 let user = {
   name: {
     container: "name-container",
@@ -54,6 +53,7 @@ function getRadioAnswer() {
 }
 
 addEventListener("submit", (event) => {
+  event.preventDefault();
   (user.sectionsToCheck = checkSectionInit()).forEach((element) =>
     check(element)
   );
@@ -61,12 +61,9 @@ addEventListener("submit", (event) => {
   if (checkIfErrorScroll()) {
     showSuccess(true);
     printInput();
-    form.reset();
-    setTimeout(() => {
-      showSuccess(false);
-    }, 4000);
-  } else {
-    event.preventDefault();
+    document.addEventListener("keydown", (e) => {
+      form.submit();
+    });
   }
 });
 
