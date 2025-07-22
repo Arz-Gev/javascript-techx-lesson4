@@ -1,4 +1,5 @@
 let form = elementById("form");
+let data = new FormData(form);
 let user = {
   name: {
     container: "name-container",
@@ -33,11 +34,11 @@ let user = {
     text: elementById("suggestions"),
   },
   willRecomend: {
-    answer: document.getElementsByName("recomend"), //getRadioAnswer(),
+    answer: "",
   },
   referencePeople: {
-    personOne: [valueById("1-1"), valueById("1-2"), valueById("1-3")],
-    personTwo: [valueById("2-1"), valueById("2-2"), valueById("2-3")],
+    personOne: [elementById("1-1"), elementById("1-2"), elementById("1-3")],
+    personTwo: [elementById("2-1"), elementById("2-2"), elementById("2-3")],
   },
   sectionsToCheck: [],
   sectionsToPrint: [],
@@ -45,14 +46,10 @@ let user = {
 
 function getRadioAnswer() {
   let radio = document.getElementsByName("recomend");
-  radio.forEach((element) => {
-    if (element.value !== "") {
-      user.willRecomend.answer = element;
-      return;
+  for (let i = 0; i < radio.length; i++) {
+    if (radio[i].checked) {
+      user.willRecomend.answer = radio[i];
     }
-  });
-  if (!user.willRecomend.answer) {
-    return "empty";
   }
 }
 
@@ -67,15 +64,26 @@ addEventListener("submit", (event) => {
     form.reset();
     setTimeout(() => {
       showSuccess(false);
-      console.clear;
     }, 4000);
+  } else {
+    event.preventDefault();
   }
-  event.preventDefault();
 });
 
 function printInput() {
+  getRadioAnswer();
   (user.sectionsToPrint = printSectionInit()).forEach((element) => {
-    console.log(element?.value);
+    console.log(element.value);
+  });
+  printReferencePeople();
+}
+
+function printReferencePeople() {
+  user.referencePeople.personOne.forEach((element) => {
+    console.log(element.value);
+  });
+  user.referencePeople.personTwo.forEach((element) => {
+    console.log(element.value);
   });
 }
 
@@ -162,8 +170,6 @@ function printSectionInit() {
     user.feedback.text,
     user.suggestion.text,
     user.willRecomend.answer,
-    user.referencePeople.personOne,
-    user.referencePeople.persontwo,
   ];
 }
 
