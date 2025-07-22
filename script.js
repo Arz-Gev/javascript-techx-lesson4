@@ -1,3 +1,4 @@
+let form = elementById("form");
 let user = {
   name: {
     container: "name-container",
@@ -43,19 +44,24 @@ let user = {
 };
 
 addEventListener("submit", (event) => {
-  event.preventDefault();
   (user.sectionsToCheck = checkSectionInit()).forEach((element) =>
     check(element)
   );
-
   if (checkIfErrorScroll()) {
     showSuccess(true);
+    printInput();
   }
+  event.preventDefault();
 });
+
+function printInput() {
+  (user.sectionsToPrint = printSectionInit()).forEach((element) => {
+    console.log(element?.value);
+  });
+}
 
 function checkIfErrorScroll() {
   const div = document.querySelectorAll(".error");
-
   for (let child of div) {
     const style = window.getComputedStyle(child);
     if (style.display !== "none") {
@@ -121,9 +127,27 @@ function elementById(id) {
 function checkSectionInit() {
   return [user.name, user.addres, user.phone, user.email, user.knowsFrom];
 }
+
 function printSectionInit() {
-  return [user.name, user.addres, user.phone, user.email, user.knowsFrom];
+  return [
+    user.name.firstName,
+    user.name.lastName,
+    user.addres.streetAddressLine1,
+    user.addres.streetAddressLine2,
+    user.addres.addresCity,
+    user.addres.addresStateProvince,
+    user.addres.postalZipCode,
+    user.phone.number,
+    user.email.addres,
+    user.knowsFrom.source,
+    user.feedback.text,
+    user.suggestion.text,
+    user.willRecomend.answer,
+    user.referencePeople.personOne,
+    user.referencePeople.persontwo,
+  ];
 }
+
 function check(obj) {
   requieredError(obj.container, false);
   if (obj === user.phone) {
@@ -162,7 +186,6 @@ function requieredError(container, condition) {
 }
 
 function emailValidation() {
-  //added counter
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   let userEmail = user.email.addres;
   let container = user.email.container;
