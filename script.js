@@ -33,7 +33,7 @@ let user = {
     text: elementById("suggestions"),
   },
   willRecomend: {
-    answer: elementById("recomend"),
+    answer: document.getElementsByName("recomend"), //getRadioAnswer(),
   },
   referencePeople: {
     personOne: [valueById("1-1"), valueById("1-2"), valueById("1-3")],
@@ -43,13 +43,32 @@ let user = {
   sectionsToPrint: [],
 };
 
+function getRadioAnswer() {
+  let radio = document.getElementsByName("recomend");
+  radio.forEach((element) => {
+    if (element.value !== "") {
+      user.willRecomend.answer = element;
+      return;
+    }
+  });
+  if (!user.willRecomend.answer) {
+    return "empty";
+  }
+}
+
 addEventListener("submit", (event) => {
   (user.sectionsToCheck = checkSectionInit()).forEach((element) =>
     check(element)
   );
+
   if (checkIfErrorScroll()) {
     showSuccess(true);
     printInput();
+    form.reset();
+    setTimeout(() => {
+      showSuccess(false);
+      console.clear;
+    }, 4000);
   }
   event.preventDefault();
 });
